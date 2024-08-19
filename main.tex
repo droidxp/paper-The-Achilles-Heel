@@ -1,0 +1,241 @@
+
+ 
+\documentclass[pdflatex,sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
+%%documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+%%\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style 
+%%\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
+%%\documentclass[pdflatex,sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[pdflatex,sn-vancouver,Numbered]{sn-jnl}% Vancouver Reference Style
+%%\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style 
+%%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
+
+%%%% Standard Packages
+%%<additional latex packages if required can be included here>
+
+
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+
+
+%
+\usepackage{amsmath,amsfonts}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{balance}
+\usepackage[most]{tcolorbox}
+\usepackage{awesomebox}
+\usepackage{multirow}
+\usepackage{blindtext}
+
+
+
+%%%%
+
+%%%%%=============================================================================%%%%
+%%%%  Remarks: This template is provided to aid authors with the preparation
+%%%%  of original research articles intended for submission to journals published 
+%%%%  by Springer Nature. The guidance has been prepared in partnership with 
+%%%%  production teams to conform to Springer Nature technical requirements. 
+%%%%  Editorial and presentation requirements differ among journal portfolios and 
+%%%%  research disciplines. You may find sections in this template are irrelevant 
+%%%%  to your work and are empowered to omit any such section if allowed by the 
+%%%%  journal you intend to submit to. The submission guidelines and policies 
+%%%%  of the journal take precedence. A detailed User Manual is available in the 
+%%%%  template package for technical guidance.
+%%%%%=============================================================================%%%%
+
+%% as per the requirement new theorem styles can be included as shown below
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%  meant for continuous numbers
+%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
+%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
+\newtheorem{proposition}[theorem]{Proposition}% 
+%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+%%\unnumbered% uncomment this for unnumbered level heads
+
+\newtcbtheorem{obs}{Finding}{%
+        theorem name,%
+        colback=gray!5,%
+        colframe=gray!35!black,%
+        fonttitle=\bfseries,title after break={Lemma  -- \raggedleft Continued}%
+    }{lem}
+
+\newcommand{\tb}[2]{\tipbox{{\bf Finding #1}. #2}}
+
+\newcommand{\droidxp}{DroidXP\xspace}
+\newcommand{\review}[1]{\textcolor{black}{#1}}
+\newcommand{\alert}[1]{\textcolor{red}{#1}}
+\newcommand\kn[1]{\textcolor{red}{KN: #1}}
+\newcommand\fh[1]{\textcolor{blue}{FH: #1}}
+\newcommand\rb[1]{(\textcolor{red}{RB: #1})}
+
+\newcommand{\highlight}[1]{{\color{red}}#1}
+
+\newcommand\raw[1]{\textcolor{red}{#1}\xspace}
+
+\newcommand{\mas}{MAS approach\xspace}
+
+\newcommand{\fm}[1]{\emph{#1}\xspace}
+
+\newcommand{\gps}{\fm{gappusin}}  % the gappusin family.
+
+\newcommand{\rmb}{\fm{revmob}} 
+
+\newcommand{\sscore}{Similarity Score\xspace}
+
+\newcommand{\rqa}{What is the impact of considering a larger and diverse dataset on the accuracy of the \mas for malware classification?}
+
+\newcommand{\rqb}{How much gain we obtain on the performance of the \mas for malware classification when considering trace analysis?}
+
+\newcommand{\rqc}{What is the influence of the similarity between the original and repackaged
+                  versions of the apps on the performance of the \mas for malware classification?}
+
+\newcommand{\rqd}{What is the influence of the malware family (e.g., \fm{gappusin}, \fm{kuguo}, \fm{dowgin}) on the performance of the \mas for malware classification?}
+
+\newcommand{\rqe}{How much gain we obtain on the performance of the \mas for malware classification when considering its extensions?}
+
+
+\newcommand{\repack}{RePack\xspace}
+\newcommand{\amc}{AndroMalPack\xspace}
+
+\newcommand{\appsSmall}{102\xspace}
+\newcommand{\apps}{\textcolor{black}{4,076}\xspace}
+\newcommand{\napps}{\textcolor{blue}{726}\xspace}
+
+\newcommand{\sds}{\texttt{SmallDS}\xspace}
+\newcommand{\cds}{\texttt{LargeDS}\xspace}
+\newcommand{\nds}{\texttt{DS3}\xspace}
+\newcommand{\avt}{\texttt{avclass2} tool\xspace}
+\newcommand{\vt}{\texttt{VirusTotal}\xspace}
+\newcommand{\se}{security engine\xspace}
+\newcommand{\ses}{security engines\xspace}
+
+
+\newcommand{\fone}{F1-score\xspace}
+\newcommand{\fscoreSmall}{0.89\xspace}
+\newcommand{\fscoreNew}{0.85\xspace}
+
+\newcommand{\nfscoreSmall}{0.85\xspace}
+\newcommand{\nfscoreSmallC}{0.87\xspace}
+
+\newcommand{\fscore}{\textcolor{black}{0.54}\xspace}
+\newcommand{\fscoreC}{\textcolor{blue}{0.49}\xspace}
+
+\newcommand{\malwares}{\textcolor{black}{2,895}\xspace}
+\newcommand{\malwaresP}{\textcolor{black}{71.02}}
+\newcommand{\malwaresN}{\textcolor{blue}{87.98}}
+\newcommand{\appsGps}{\textcolor{black}{1,337}\xspace}
+\newcommand{\appsGpsFN}{\textcolor{black}{1,170}\xspace}
+
+
+
+\begin{document}
+
+\title[The Achilles' Heel of the Android Mining Sandbox Approach for Malware Identification
+]{The Achilles' Heel of the Android Mining Sandbox Approach for Malware Identification
+}
+
+%%=============================================================%%
+%% GivenName	-> \fnm{Joergen W.}
+%% Particle	-> \spfx{van der} -> surname prefix
+%% FamilyName	-> \sur{Ploeg}
+%% Suffix	-> \sfx{IV}
+%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
+%%  \sfx{IV}}\email{iauthor@gmail.com}
+%%=============================================================%%
+
+\author*[1]{\fnm{Francisco} \sur{Costa}}\email{francisco.costa@aluno.unb.br}
+
+\author[1]{\fnm{Ismael} \sur{Medeiros}}\email{ismael.medeiros@aluno.unb.br}
+\equalcont{These authors contributed equally to this work.}
+
+\author[1]{\fnm{Leandro} \sur{Oliveira}}\email{leandro.oliveira@aluno.unb.br}
+\equalcont{These authors contributed equally to this work.}
+
+\author[1]{\fnm{Jo\~{a}o} \sur{Cal\'{a}ssio}}\email{joao.calassion@aluno.unb.br}
+\equalcont{These authors contributed equally to this work.}
+
+\author[1]{\fnm{Rodrigo} \sur{Bonif\'{a}cio}}\email{rbonifacio@unb.br}
+\equalcont{These authors contributed equally to this work.}
+
+\author[2]{\fnm{Krishna} \sur{Narasimhan}}\email{kri.nara@informatik.tu-darmstadt.de}
+\equalcont{These authors contributed equally to this work.}
+
+\author[2]{\fnm{Mira} \sur{Mezini}}\email{mezini@informatik.tu-darmstadt.de}
+\equalcont{These authors contributed equally to this work.}
+
+\author[3]{\fnm{M\'{a}rcio} \sur{Ribeiro}}\email{marcio@ic.ufal.br}
+\equalcont{These authors contributed equally to this work.}
+
+\affil*[1]{\orgdiv{Computer Science Department}, \orgname{University of Bras\'{i}lia}, \orgaddress{\city{Bras\'{i}lia}, \country{Brazil}}}
+
+\affil[2]{\orgdiv{Software Technology Group}, \orgname{TU Darmstadt}, \orgaddress{\city{Darmstadt}, \country{Germany}}}
+
+\affil[3]{\orgdiv{Computing Institute}, \orgname{ Federal University of Alagoas}, \orgaddress{\city{Macei\'{o}},  \country{Brazil}}}
+
+%%==================================%%
+%% Sample for unstructured abstract %%
+%%==================================%%
+
+\abstract{The widespread use of smartphones in our daily lives has elevated concerns regarding their security among researchers and practitioners.
+Particularly, security issues are highly prevalent in Android, the most popular mobile operating system. Previous research has explored
+various techniques to address these concerns, including the Mining Android Sandbox approach (\mas), which aims to identify malicious behavior in repackaged Android applications (apps).
+However, earlier studies have been limited by small datasets, typically consisting of only \appsSmall pairs of original and repackaged apps.
+This limitation raises questions about the external validity of their findings and whether the MAS approach can be generalized to larger datasets.
+To address these concerns, this paper presents the results of an experiment that replicates state-of-the-art research on evaluating the
+accuracy of the \mas. Unlike previous studies, our research employs a dataset that is an order of magnitude larger, comprising \apps
+pairs of apps covering a more diverse range of Android malware families. Surprisingly, our findings indicate a significant drop in the accuracy of the MAS approach for identifying malware, with
+the \fone decreasing from \fscoreSmall in previous studies to \fscore in our larger dataset. Upon closer examination, \review{we discovered that the higher representation of certain malware families partially accounts for the increased number of instance} where the \mas fails to correctly classify a repackaged app as malware. Our findings highlight the limitations of the MAS approach, particularly when scaled, and underscore the importance of complementing it with other techniques to effectively detect a
+broader range of malware. This opens avenues for further discussion on addressing the blind spots
+that affect the accuracy of the \mas.}
+
+
+
+\keywords{Android Malware Detection, Dynamic Analysis, Mining Android Sandboxes.}
+
+%%\pacs[JEL Classification]{D8, H51}
+
+%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
+
+\maketitle
+
+\input{introduction}
+\input{background}
+\input{experimentalSetup}
+\input{results}
+\input{discussion}
+\input{conclusions}
+\balance 
+
+
+\bibliography{ref}
+
+
+
+\end{document}
+
