@@ -34,7 +34,28 @@ Adware, designed to automatically display advertisements while an app is running
 
 
 
-Although some families explains the drop in the recall of the \mas, other reasons might explain the reduced precision of the \mas in the \cds. First, the distribution of samples equally between families in the datasets might partially explain the low precision of the \mas in the \cds. Second, we only label a repackaged version of an app as malware if \vt reports that at least two engines find suspicious behavior in that asset. This decision might be considered an over-constraint. \fh{However, when we relax this constraint and label an asset as malware whenever at least one engine detects suspicious behavior, despite improving precision to 0.87, we decrease recall to 0.39. In general, the accuracy of the \mas remain the same 0.54---still significantly smaller than the \mas precision for the \sds. Although previous research suggests that two engines is a reasonable threshold for labeling an app as malicious, we also checked the accuracy when considering five and ten engines. We obtained similar results, with accuracy no higher than 0.56.}
+Although some families explains the drop in the recall of the \mas, other reasons might explain the reduced precision of the \mas in the \cds. First, the distribution of samples equally between families in the datasets might partially explain the low precision of the \mas in the \cds. Second, we only label a repackaged version of an app as malware if \vt reports that at least two engines find suspicious behavior in that asset. This decision might be considered an over-constraint. \fh{However, when we relax this constraint and label an asset as malware whenever at least one engine detects suspicious behavior, despite improving precision to 0.85, we decrease recall to 0.39. In general, the accuracy of the \mas remain the same 0.53---still significantly smaller than the \mas precision for the \sds. Although previous research suggests that two engines is a reasonable threshold for labeling an app as malicious, we also checked the accuracy when considering five and ten engines. We obtained similar results, with accuracy no higher than 0.55. The accuracy for each engines is show in Table~\ref{tab:engines}.}
+
+\begin{table*}[htb]
+  \caption{Accuracy of the \mas at \cds (4,076 pairs) based on engines.}
+\centering{
+  \begin{tabular}{lrrrrrr} \hline
+    Engine(s) & TP   & FP  & FN  & Precision & Recall & $F_1$ \\
+    \hline
+    At least 01    & 1,222  & 220 & 1,900 & 0.85       & 0.39   & 0.53  \\
+   
+    At least 02    & 1,175  & 220 & 1,720 & 0.84       & 0.40   & 0.54  \\
+   
+    At least 05    & 1,087  & 220 & 1,578 & 0.83       & 0.40   & 0.54  \\
+   
+    At least 10    & 1,002  & 220 & 1,469 & 0.81       & 0.40   & 0.54  \\
+    \hline
+    
+  \end{tabular}
+  }
+  \label{tab:engines}
+\end{table*}
+
 
 
 
@@ -66,7 +87,7 @@ Altogether, the takeaways of this research are twofold:}
 \begin{itemize}
   \item Negative result: the \mas for malware detection exhibits a much higher false negative rate than previous research reported. 
 
-  \item Future directions: Researchers should advance the \mas for malware detection by exploring more advanced techniques for differentiating between benign and malicious versions of the apps. In particular, new approaches should benefit from techniques that can identify specific patterns of changes in the repackaged versions and mine sensitive calls to native APIs. The state-of-the-art on mining sandbox ignore native calls. 
+  \item Future directions: Researchers should advance the \mas for malware detection by exploring more advanced techniques for differentiating between benign and malicious versions of the apps. In particular, new approaches should benefit from techniques that can identify specific patterns of changes in the repackaged versions and mine sensitive calls to native APIs. The state-of-the-art on mining sandbox ignore native calls.
     
 \end{itemize}  
 
