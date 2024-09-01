@@ -453,12 +453,32 @@ downloader for further malicious app~\cite{DBLP:conf/ndss/ArpSHGR14}---which red
 however the repackaged version have additional call sites to the advertisement API and the advertisements sources are different. This behavior is not so harmful when compared to others repackaged apps, however nothing prevents that others malware families insert malicious operations, such as theft of sensitive data.
 
 
-\fh{As the same way from \gps sampples, we also reengineer 30 samples from the \rmb family, choosed randomly, and which were not detected by the \mas. As with the \gps family samples, no instance from the \rmb family modified the Manifest file or inserted extra calls to sensitive APIs, making it harder for the \mas to correctly label the samples as malware. However, our reverse engineering reveals that they store a file with the extension “.so” (Shared Object files) in their lib directory. These files are dynamic libraries containing native code written in C or C++, and are often used by apps for performance reasons, when resource-intensive tasks need to be performed~\cite{ruggia2023dark}. }
+\fh{As the same way from \gps sampples, we also reengineer 30 samples from the \rmb family, choosed randomly, and which were not detected by the \mas. As with the \gps family samples, no instance from the \rmb family modified the Manifest file or inserted extra calls to sensitive APIs, making it harder for the \mas to correctly label the samples as malware. However, our reverse engineering reveals that all apps store a file with the extension ``.so'' (Shared Object files) in their lib directory. These files are dynamic libraries containing native code written in C or C++, and are often used by apps for performance reasons, when resource-intensive tasks need to be performed~\cite{ruggia2023dark}. }
 
 \fh{Unfortunately, it is also possible to create malicious repackaged apps using ``.so'' files, as they can be replaced by a version containing harmful code~\cite{DBLP:conf/dsn/QianLSC14}. The Shared Object files also allow for attacks based on dynamic code injection~\cite{falsina:acsac}, considering that Android apps can use methods like System.loadLibrary() or System.load() to download malicious ``.so''  files from a remote server. Once on the device, malicious apps can use these files to interface with Java code in Android apps, via Java Native Code (JNI), performing malicious operations on low-level code, bypassing security mechanisms, like the \mas.}
 
+\fh{
+Our assessment confirms that all of the samples contain Java code, that loads a native library. To load these libraries, they use the \texttt{loadLibrary} method of the \texttt{System} class, which is called in the static constructor of the \texttt{mainActivity} class. The \texttt{loadLibrary} method takes ``game'' as an argument, and the code automatically searches the default lib directory for the .so file named (\texttt{lib}+\texttt{argument}). In all samples, the ``lib'' directory contains the \texttt{libgame.so} file. Figure~\ref{code:jni} present the code pattern of the \texttt{mainActivity} class found in the samples from \rmb family.
+}
 
 
+\begin{figure}[h]
+\centering
+\lstset{texcl=true,basicstyle=\fontsize{6}{8}\selectfont\sf,commentstyle=\small\rm,mathescape=true,escapeinside={(*}{*)}}
+\begin{lstlisting}[language=Java]
+public class PZPlayer extends Cocos2dxActivity {
+    // ...
+    System.loadLibrary("game");
+    // ...
+}
+\end{lstlisting}
+\caption{Thie code links this java file into libgame shared library}
+\label{code:jni}
+\end{figure}
+
+\fh{
+The \texttt{libgame.so} file contains compiled code written in C or C++, which is loaded into memory and linked to the apps at runtime. Although machine code is very difficult to analyze, we found that all the files include the \texttt{JNI\underline{\hspace{.1in}}OnLoad} function, which JNI automatically uses to link Java methods and native functions. When we analyzed the hexadecimal ``.so'' file, we found that all of them differ in size and content between the original and repackaged apps. It is possible that changes of interest occurred in the native \texttt{libgame.so} file and have gone unnoticed by the \mas.
+}
 
 
 %%\alert{We argue in favor of new research efforts to integrate the \mas 

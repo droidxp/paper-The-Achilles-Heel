@@ -24,10 +24,9 @@ we summarize in the following.
 %\item \textbf{Effect of trace analysis (RQ2).} We do not find any gain of enriching the vanilla \mas with trace analysis in terms of accuracy ($F_1$ score). Although the use of traces reduces the number of false negatives (improving recall), it also increases the number of false positives with a similar proportion---which does not change the $F_1$ score significantly. Nonetheless, for the context of malware identification, we believe that the gain in terms of recall might justify the use of trace analysis.
 
 \item \textbf{Similarity Analysis (RQ2).} Our results bring evidence about the existence of an association between the similarity of the original and repackaged versions of an app and the ability of the \mas to correctly classify a repackaged version of an app as a malware. Therefore, the similarity assessment can explain the low performance of the \mas to identify malware in the \cds.
-\review{
-\item \textbf{Malware Family Analysis (RQ3).} The results indicate that some families are responsible for the largest number of false negatives in the complete dataset. We specifically further investigate the \gps family, which corresponds to a particular type of
-Adware, designed to automatically display advertisements while an app is running. After reverse engineering a sample of 30 \gps malware, we confirmed that the \mas cannot identify the patterns of changes introduced in the repackaged versions of the apps. The prevalence of the \gps family in the \cds also contributed to explaining the poor performance of the \mas for malware classification in the large dataset.}
-
+\fh{
+\item \textbf{Malware Family Analysis (RQ3).} The results indicate that some families are responsible for the largest number of false negatives in the complete dataset. We specifically further investigate the \gps and \rmb families, which corresponds to a particular type of Adwares, designed to automatically display advertisements while an app is running. After reverse engineering a sample of 60 malware apps from \gps and \rmb family, we confirmed that the \mas cannot identify the patterns of changes introduced in the repackaged versions of the apps. The prevalence of the \gps and \rmb in the \cds also contributed to explaining the poor performance of the \mas for malware classification in the large dataset.
+}
 
 
 \end{itemize}
@@ -86,8 +85,10 @@ Altogether, the takeaways of this research are twofold:}
 
 \begin{itemize}
   \item Negative result: the \mas for malware detection exhibits a much higher false negative rate than previous research reported. 
+\fh{
+  \item Future directions: Researchers should advance the \mas for malware detection by exploring more sophisticated techniques for differentiating between benign and malicious versions of apps. In particular, new approaches should leverage methods that can identify specific patterns of changes in repackaged versions and mine sensitive calls to native APIs. The versatility of the Java Native Interface (JNI) has introduced challenges, as malware authors are increasingly using the native layer to hide malicious code, making both static and dynamic analysis more challenging. The current state of the art in sandbox mining overlooks native calls.}
+  
 
-  \item Future directions: Researchers should advance the \mas for malware detection by exploring more advanced techniques for differentiating between benign and malicious versions of the apps. In particular, new approaches should benefit from techniques that can identify specific patterns of changes in the repackaged versions and mine sensitive calls to native APIs. The state-of-the-art on mining sandbox ignore native calls.
     
 \end{itemize}  
 
