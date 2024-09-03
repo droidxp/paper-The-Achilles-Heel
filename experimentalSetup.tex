@@ -86,17 +86,16 @@ dataset have been indeed labeled as a malware.
 According to \vt, in the \sds (102 pairs),
 69 of the repackaged apps (67.64\%) have been identified as a malware by at least two
 \ses. Here we only consider that a repackaged version of an app is a malware if \vt reports that at least
-two \ses identify a malicious behavior within the asset. This is in accordance with previous research~\cite{vt-label,DBLP:journals/ese/KhanmohammadiEH19}.
-Considering the \cds, at least two security engines identified \malwares out of the \apps repackaged apps as malware (\malwaresP\%).
-\rb{{\bf Note:} in Section~\ref{sec:discussion}, we show that our results remain consistent across three additional scenarios:
-when classifying a repackaged version of an app as malware if at least one, five, or ten VirusTotal engines flag it as malicious.}
+two \ses identify a malicious behavior within the asset. This is in accordance with previous research~\cite{DBLP:conf/uss/ZhuSYQZS020,DBLP:journals/ese/KhanmohammadiEH19}.
+Considering the \cds, at least two security engines identified \malwares out of the \apps repackaged apps as malware (\malwaresP\%). In Section~\ref{sec:discussion}, we show that our results remain consistent across three additional scenarios:
+when classifying a repackaged version of an app as malware if at least one, five, or ten \vt engines flag it as malicious.
 
 Classifying malware into different categories is a common practice. For instance, Android malware can be classified into categories
 like riskware, trojan, adware, etc. Each category might be further specialized in several malware families, depending of its
 characteristics and attack strategy---e.g., steal network info (IP, DNS, WiFi), collect phone info,
 collect user contacts, send/receive SMS, and so on~\cite{DBLP:conf/iccns/RahaliLKTGM20}.
 According to the
-\avt~\cite{avclass2-paper}, the malware samples in the \sds come from 17 different families---most of them from the Kuguo (49.27\%) and Dowgin (17.39\%) families.  
+\avt~\cite{DBLP:conf/acsac/SebastianC20}, the malware samples in the \sds come from 17 different families---most of them from the Kuguo (49.27\%) and Dowgin (17.39\%) families.  
 Our \cds, besides a large sample of repackaged apps (\apps in total),
 comprises \review{116} families of malware we collected using the \avt---most
 of them from the Gappusin (46.18\%) family. Despite being flagged as malicious by at least two security engine, unfortunately \vt cannot correctly identify the family of 253 samples from our \cds.
@@ -143,14 +142,11 @@ presents a list of the 10 most frequently injected methods from sensitive APIs f
     
     android.telephony.TelephonyManager: java.lang.String getNetworkOperator() &  237\\
 
+\hline
 
-\botrule
 \end{tabular*}
 
 \end{sidewaystable}
-
-
-
 
 
 It is important to highlight that our samples come from different Android app stores. Most of our repackage apps come from a non-official
@@ -173,20 +169,22 @@ DroidFax to instrument the apps and collect static
 information about them. To improve the performance across multiple executions,
 this phase executes only once for each version of the apps in our dataset.
 
-\item \textbf{Execution}: In this step, DroidXP first installs the (instrumented) version of the APK files in the Android emulator we use in our experiment (API 28) and then starts a test case generation tool for executing both app versions (original and repackage). We execute the apps via DroidBot~\cite{DBLP:conf/icse/LiYGC17}, mostly because previous research works report the best accuracy of the sandboxes built using the \mas and the DroidBot as test case generation tool. \fh{Since previous research also indicated that DroidBot's coverage reaches near-maximum within one minute, we run each app for three minutes, and for three times, to mitigate the randomness involved in test case generation tools. To also ensure that each execution gets the benefit of running on a fresh Android instance without biases that could stem out of history, DroidXP wipes out all data stored on the emulator that has been collected from previous executions.}
+\item \textbf{Execution}: In this step, DroidXP first installs the (instrumented) version of the APK files in the Android emulator we use in our experiment (API 28) and then starts a test case generation tool for executing both app versions (original and repackage). We execute the apps via DroidBot~\cite{DBLP:conf/icse/LiYGC17}, mostly because previous research works report the best accuracy of the sandboxes built using the \mas and the DroidBot as test case generation tool. Since previous research also indicated that DroidBot's coverage reaches near-maximum within one minute, we run each app for three minutes, and for three times, to mitigate the randomness involved in test case generation tools. To also ensure that each execution gets the benefit of running on a fresh Android instance without biases that could stem out of history, DroidXP wipes out all data stored on the emulator that has been collected from previous executions.
 
 
 \item \textbf{Data Collection}: After the execution of the instrumented apps, once again, DroidXP leverages DroidFax, this time to collect all relevant information (such as calls to sensitive APIs, test coverage metrics, and so on). We use this information to analyze the performance of the \mas for detecting malicious behavior.
 \end{enumerate}
 
-\fh{The overall architecture of the \mas is represented in Figure~\ref{fig:mas}. }
+The overall architecture of the \mas is represented in Figure~\ref{fig:mas}.
 
 
-\begin{figure}[h]
-  \includegraphics[width=\columnwidth]{images/mineSandbox.pdf}
-  \caption{The overall architecture of the \mas}
-  \label{fig:mas}
-\end{figure}
+\begin{figure*}[hbt]
+    \centering
+    \scalebox{1.25}{
+    \includegraphics[width=\linewidth]{mineSandbox.pdf}}
+    \caption{The overall architecture of the \mas}
+    \label{fig:mas}
+\end{figure*}
 
 
 \subsection{Data Analysis Procedures} \label{sec:dataAnalysisProc}
@@ -216,8 +214,7 @@ situations:
   according to \vt, at least two \ses label the asset as a malware.
 \end{itemize}
 
-\rb{In Section~\ref{sec:discussion} we }
-We compute \emph{Precision}, \emph{Recall}, and \emph{F-measure} ($F_1$) from
+In Section~\ref{sec:results} we compute \emph{Precision}, \emph{Recall}, and \emph{F-measure} ($F_1$) from
 the number of true-positives, false-positives, and false-negatives (using standard
 formulae). We use basic statistics (average, median, standard deviation) to identify the
 accuracy of the \mas for malware classification, using both datasets---i.e., the \sds

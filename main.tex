@@ -1,29 +1,65 @@
-
- 
-\documentclass[pdflatex,sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
-%%documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
-%%\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style 
-%%\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
-%%\documentclass[pdflatex,sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
-%%\documentclass[pdflatex,sn-vancouver,Numbered]{sn-jnl}% Vancouver Reference Style
-%%\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style 
-%%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
-
-%%%% Standard Packages
-%%<additional latex packages if required can be included here>
-
-
-\usepackage{amsmath,amssymb,amsfonts}%
-\usepackage{amsthm}%
-\usepackage{mathrsfs}%
-\usepackage[title]{appendix}%
-\usepackage{xcolor}%
-\usepackage{textcomp}%
-\usepackage{manyfoot}%
-\usepackage{booktabs}%
-
-
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+\RequirePackage{fix-cm}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+
+\usepackage{graphicx}
+
+
+      
+\usepackage[T1]{fontenc}
+\usepackage{newtxmath,newtxtext}                
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{tabulary}                                                           
+% Include the following packages 
+
+\usepackage{booktabs}
+
+
 \usepackage{amsmath,amsfonts}
 \usepackage{algorithmic}
 \usepackage{array}
@@ -42,38 +78,6 @@
 \usepackage{awesomebox}
 \usepackage{multirow}
 \usepackage{blindtext}
-
-
-
-%%%%
-
-%%%%%=============================================================================%%%%
-%%%%  Remarks: This template is provided to aid authors with the preparation
-%%%%  of original research articles intended for submission to journals published 
-%%%%  by Springer Nature. The guidance has been prepared in partnership with 
-%%%%  production teams to conform to Springer Nature technical requirements. 
-%%%%  Editorial and presentation requirements differ among journal portfolios and 
-%%%%  research disciplines. You may find sections in this template are irrelevant 
-%%%%  to your work and are empowered to omit any such section if allowed by the 
-%%%%  journal you intend to submit to. The submission guidelines and policies 
-%%%%  of the journal take precedence. A detailed User Manual is available in the 
-%%%%  template package for technical guidance.
-%%%%%=============================================================================%%%%
-
-%% as per the requirement new theorem styles can be included as shown below
-\theoremstyle{thmstyleone}%
-\newtheorem{theorem}{Theorem}%  meant for continuous numbers
-%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
-%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
-\newtheorem{proposition}[theorem]{Proposition}% 
-%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
-
-\theoremstyle{thmstyletwo}%
-\newtheorem{example}{Example}%
-\newtheorem{remark}{Remark}%
-
-\theoremstyle{thmstylethree}%
-\newtheorem{definition}{Definition}%
 
 \raggedbottom
 %%\unnumbered% uncomment this for unnumbered level heads
@@ -152,78 +156,94 @@
 \newcommand{\appsGps}{\textcolor{black}{1,337}\xspace}
 \newcommand{\appsGpsFN}{\textcolor{black}{1,170}\xspace}
 
+%
 
-
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+%
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+%
 \begin{document}
 
-\title[The Achilles' Heel of the Android Mining Sandbox Approach for Malware Identification
-]{The Achilles' Heel of the Android Mining Sandbox Approach for Malware Identification
+\title{The Achilles' Heel of the Android Mining Sandbox Approach for Malware Identification}
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Francisco Costa\and
+        Ismael Medeiros \and
+        Leandro Oliveira \and
+        Jo\~{a}o Cal\'{a}ssio\and
+        Rodrigo Bonif\'{a}cio \and
+        Krishna Narasimhan \and
+        Mira Mezini \and
+        M\'{a}rcio Ribeiro
 }
 
-%%=============================================================%%
-%% GivenName	-> \fnm{Joergen W.}
-%% Particle	-> \spfx{van der} -> surname prefix
-%% FamilyName	-> \sur{Ploeg}
-%% Suffix	-> \sfx{IV}
-%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
-%%  \sfx{IV}}\email{iauthor@gmail.com}
-%%=============================================================%%
+%\authorrunning{Short form of author list} % if too long for running head
 
-\author*[1]{\fnm{Francisco} \sur{Costa}}\email{francisco.costa@aluno.unb.br}
+\institute{
+            Francisco, Costa \at 
+            University of Brasília, Brasília, Brazil\\
+            \email{francisco.costa@aluno.unb.br}
+            \and
+            Ismael, Medeiros\at 
+            University of Brasília, Brasília, Brazil\\
+            \email{ismael.medeiros@aluno.unb.br}
+            \and
+            Leandro, Oliveira\at 
+            University of Brasília, Brasília, Brazil\\
+            \email{leandro.oliveira@aluno.unb.br}
+            \and
+            Jo\~{a}o,Cal\'{a}ssio\at 
+            University of Brasília, Brasília, Brazil\\
+            \email{joao.calassion@aluno.unb.br}
+            \and
+            Rodrigo,Bonif\'{a}cio\at 
+            University of Brasília, Brasília, Brazil\\
+            \email{rbonifacio@unb.br}
+            \and
+            Krishna,Narasimhan\at
+            TU Darmstadt, Germany\\
+            \email{kri.nara@informatik.tu-darmstadt.de}
+            \and
+            Mira, Mezini\at
+            TU Darmstadt, Germany\\
+            \email{mezini@informatik.tu-darmstadt.de}
+            \and
+            M\'{a}rcio, Ribeiro\at
+             Federal University of Alagoas, Brazil\\
+            \email{marcio@ic.ufal.br}
+}
 
-\author[1]{\fnm{Ismael} \sur{Medeiros}}\email{ismael.medeiros@aluno.unb.br}
-\equalcont{These authors contributed equally to this work.}
-
-\author[1]{\fnm{Leandro} \sur{Oliveira}}\email{leandro.oliveira@aluno.unb.br}
-\equalcont{These authors contributed equally to this work.}
-
-\author[1]{\fnm{Jo\~{a}o} \sur{Cal\'{a}ssio}}\email{joao.calassion@aluno.unb.br}
-\equalcont{These authors contributed equally to this work.}
-
-\author[1]{\fnm{Rodrigo} \sur{Bonif\'{a}cio}}\email{rbonifacio@unb.br}
-\equalcont{These authors contributed equally to this work.}
-
-\author[2]{\fnm{Krishna} \sur{Narasimhan}}\email{kri.nara@informatik.tu-darmstadt.de}
-\equalcont{These authors contributed equally to this work.}
-
-\author[2]{\fnm{Mira} \sur{Mezini}}\email{mezini@informatik.tu-darmstadt.de}
-\equalcont{These authors contributed equally to this work.}
-
-\author[3]{\fnm{M\'{a}rcio} \sur{Ribeiro}}\email{marcio@ic.ufal.br}
-\equalcont{These authors contributed equally to this work.}
-
-\affil*[1]{\orgdiv{Computer Science Department}, \orgname{University of Bras\'{i}lia}, \orgaddress{\city{Bras\'{i}lia}, \country{Brazil}}}
-
-\affil[2]{\orgdiv{Software Technology Group}, \orgname{TU Darmstadt}, \orgaddress{\city{Darmstadt}, \country{Germany}}}
-
-\affil[3]{\orgdiv{Computing Institute}, \orgname{ Federal University of Alagoas}, \orgaddress{\city{Macei\'{o}},  \country{Brazil}}}
-
-%%==================================%%
-%% Sample for unstructured abstract %%
-%%==================================%%
-
-\abstract{The widespread use of smartphones in our daily lives has elevated concerns regarding their security among researchers and practitioners.
-Particularly, security issues are highly prevalent in Android, the most popular mobile operating system. Previous research has explored
-various techniques to address these concerns, including the Mining Android Sandbox approach (\mas), which aims to identify malicious behavior in repackaged Android applications (apps).
-However, earlier studies have been limited by small datasets, typically consisting of only \appsSmall pairs of original and repackaged apps.
-This limitation raises questions about the external validity of their findings and whether the MAS approach can be generalized to larger datasets.
-To address these concerns, this paper presents the results of an experiment that replicates state-of-the-art research on evaluating the
-accuracy of the \mas. Unlike previous studies, our research employs a dataset that is an order of magnitude larger, comprising \apps
-pairs of apps covering a more diverse range of Android malware families. Surprisingly, our findings indicate a significant drop in the accuracy of the MAS approach for identifying malware, with
-the \fone decreasing from \fscoreSmall in previous studies to \fscore in our larger dataset. Upon closer examination, \review{we discovered that the higher representation of certain malware families partially accounts for the increased number of instance} where the \mas fails to correctly classify a repackaged app as malware. Our findings highlight the limitations of the MAS approach, particularly when scaled, and underscore the importance of complementing it with other techniques to effectively detect a
-broader range of malware. This opens avenues for further discussion on addressing the blind spots
-that affect the accuracy of the \mas.}
-
-
-
-\keywords{Android Malware Detection, Dynamic Analysis, Mining Android Sandboxes.}
-
-%%\pacs[JEL Classification]{D8, H51}
-
-%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
+\date{
+\begin{huge} \\
+Declarations
+\end{huge} \\
+\begin{large} \\
+\textbf{Funding and Conflicts of interests/Competing interest}
+\end{large} \\
+The authors declare that they have no conflict of interest. \\
+\begin{large} \\
+\textbf{Data Availability Statements}
+\end{large} \\
+Our study is fully reproducible. All developed tools, collected data, and Python scripts are available online for statistical analysis in [https://github.com/droidxp/paper-droidxptrace-results]
+}
 
 \maketitle
 
+
+
+\vspace{2em}
+
+\input{abstract}
 \input{introduction}
 \input{background}
 \input{experimentalSetup}
@@ -233,9 +253,29 @@ that affect the accuracy of the \mas.}
 \balance 
 
 
-\bibliography{ref}
+%\begin{acknowledgements}
+%If you'd like to thank anyone, place your comments here
+%and remove the percent signs.
+%\end{acknowledgements}
+
+
+% Authors must disclose all relationships or interests that 
+% could have direct or potential influence or impart bias on 
+% the work: 
+%
+% \section*{Conflict of interest}
+%
+% The authors declare that they have no conflict of interest.
+
+
+% BibTeX users please use one of
+%\bibliographystyle{spbasic}      % basic style, author-year citations
+\bibliographystyle{spmpsci}      % mathematics and physical sciences
+%\bibliographystyle{spphys}       % APS-like style for physics
+\bibliography{ref}   % name your BibTeX data base
 
 
 
 \end{document}
+% end of file template.tex
 

@@ -24,9 +24,8 @@ we summarize in the following.
 %\item \textbf{Effect of trace analysis (RQ2).} We do not find any gain of enriching the vanilla \mas with trace analysis in terms of accuracy ($F_1$ score). Although the use of traces reduces the number of false negatives (improving recall), it also increases the number of false positives with a similar proportion---which does not change the $F_1$ score significantly. Nonetheless, for the context of malware identification, we believe that the gain in terms of recall might justify the use of trace analysis.
 
 \item \textbf{Similarity Analysis (RQ2).} Our results bring evidence about the existence of an association between the similarity of the original and repackaged versions of an app and the ability of the \mas to correctly classify a repackaged version of an app as a malware. Therefore, the similarity assessment can explain the low performance of the \mas to identify malware in the \cds.
-\fh{
+
 \item \textbf{Malware Family Analysis (RQ3).} The results indicate that some families are responsible for the largest number of false negatives in the complete dataset. We specifically further investigate the \gps and \rmb families, which corresponds to a particular type of Adwares, designed to automatically display advertisements while an app is running. After reverse engineering a sample of 60 malware apps from \gps and \rmb family, we confirmed that the \mas cannot identify the patterns of changes introduced in the repackaged versions of the apps. The prevalence of the \gps and \rmb in the \cds also contributed to explaining the poor performance of the \mas for malware classification in the large dataset.
-}
 
 
 \end{itemize}
@@ -59,8 +58,8 @@ Altogether, the takeaways of this research are twofold:}
 
 \begin{itemize}
   \item Negative result: the \mas for malware detection exhibits a much higher false negative rate than previous research reported. 
-\fh{
-  \item Future directions: Researchers should advance the \mas for malware detection by exploring more sophisticated techniques for differentiating between benign and malicious versions of apps. In particular, new approaches should leverage methods that can identify specific patterns of changes in repackaged versions and mine sensitive calls to native APIs. The versatility of the Java Native Interface (JNI) has introduced challenges, as malware authors are increasingly using the native layer to hide malicious code, making both static and dynamic analysis more challenging. The current state of the art in sandbox mining overlooks native calls.}
+
+  \item Future directions: Researchers should advance the \mas for malware detection by exploring more sophisticated techniques for differentiating between benign and malicious versions of apps. In particular, new approaches should leverage methods that can identify specific patterns of changes in repackaged versions and mine sensitive calls to native APIs. The versatility of the Java Native Interface (JNI) has introduced challenges, as malware authors are increasingly using the native layer to hide malicious code, making both static and dynamic analysis more challenging. The current state of the art in sandbox mining overlooks native calls.
   
 
     
@@ -101,7 +100,7 @@ That is, the \mas assumes the existence of a benign original
 version of a given app in the exploratory phase. \highlight{We also query \vt to confirm this
 assumption, and found that the original version of seven (out 102) apps in the
 \sds contains malicious code. We believe the authors of previous studies carefully check that assumption,
-and this difference had occurred because the outputs of \vt change over time~\cite{vt-label}}, and a dataset that is consistent at a date will
+and this difference had occurred because the outputs of \vt change over time~\cite{DBLP:conf/uss/ZhuSYQZS020}}, and a dataset that is consistent at a date will
 not so in the future.
 Therefore, while reproducing this research, it is necessary to query \vt to get the most up-to-date classification of the assets, which might lead to results that might slightly
 diverge from what we have reported here. Besides that, in the \cds we only consider
@@ -128,14 +127,13 @@ Based on these metrics, we computed the accuracy results using precision and rec
 investigated whether or not the \mas would classify an original version of an app as a malware,
 computing the results of the test case generation tools in multiple runs. After combining three executions
 in an original version to build a sandbox, we did not find any other execution that could wrongly
-label an original app as a malware. \rb{Also, we label a repackaged version of an app as malware
+label an original app as a malware. Also, we label a repackaged version of an app as malware
   only if \vt reports that at least two engines detect suspicious behavior in that asset.
   This decision might be viewed as either a weak or strong constraint and could
-  raise concerns about construct validity.}
-\fh{However, when we relax this constraint and label an asset as malware whenever at least one engine detects suspicious behavior, precision improves to 0.85,
+  raise concerns about construct validity. However, when we relax this constraint and label an asset as malware whenever at least one engine detects suspicious behavior, precision improves to 0.85,
   but recall drops to 0.39. Overall, the accuracy of the \mas remains almost unchanged (F$_1$ = 0.53)---still significantly lower than the precision of the \mas for \sds.
   We also evaluated accuracy by considering an asset as malware when at least five or ten VirusTotal security engines flagged it. As shown in Table~\ref{tab:engines},
-  the results did not diverge significantly.}
+  the results did not diverge significantly.
 
 
 \begin{table*}[htb]

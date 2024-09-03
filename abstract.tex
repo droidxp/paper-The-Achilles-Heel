@@ -1,0 +1,19 @@
+\begin{abstract}
+
+
+The widespread use of smartphones in our daily lives has elevated concerns regarding their security among researchers and practitioners.
+Particularly, security issues are highly prevalent in Android, the most popular mobile operating system. Previous research has explored
+various techniques to address these concerns, including the Mining Android Sandbox approach (\mas), which aims to identify malicious behavior in repackaged Android applications (apps).
+However, earlier studies have been limited by small datasets, typically consisting of only \appsSmall pairs of original and repackaged apps.
+This limitation raises questions about the external validity of their findings and whether the MAS approach can be generalized to larger datasets.
+To address these concerns, this paper presents the results of an experiment that replicates state-of-the-art research on evaluating the
+accuracy of the \mas. Unlike previous studies, our research employs a dataset that is an order of magnitude larger, comprising \apps
+pairs of apps covering a more diverse range of Android malware families. Surprisingly, our findings indicate a significant drop in the accuracy of the MAS approach for identifying malware, with
+the \fone decreasing from \fscoreSmall in previous studies to \fscore in our larger dataset. Upon closer examination, \review{we discovered that the higher representation of certain malware families partially accounts for the increased number of instance} where the \mas fails to correctly classify a repackaged app as malware. Our findings highlight the limitations of the MAS approach, particularly when scaled, and underscore the importance of complementing it with other techniques to effectively detect a
+broader range of malware. This opens avenues for further discussion on addressing the blind spots
+that affect the accuracy of the \mas.
+
+
+\keywords{Android Malware Detection, Dynamic Analysis, Mining Android Sandboxes.}
+
+\end{abstract}

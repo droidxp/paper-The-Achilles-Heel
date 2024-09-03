@@ -34,7 +34,7 @@ As we mentioned, in this paper we take advantage
 of \vt to label our dataset and build a ground truth:
 In our datasets, we classify a repackaged version of an app as malware if, according to our \vt
 query results, at least two security engines identify malicious behavior in the asset.
-This decision aligns with existing recommendations~\cite{vt-label,DBLP:journals/ese/KhanmohammadiEH19}).
+This decision aligns with existing recommendations~\cite{DBLP:conf/uss/ZhuSYQZS020,DBLP:journals/ese/KhanmohammadiEH19}).
 %\kn{Now its a bit clearer, but I would expect a separate paragraph when we introduce VT explaing how VT serves as a better ground truth and also justify our choices on the numbers with VT a bit more -- why we have two as the magic number of antivirus scanners... }
 The first row of Table~\ref{tab:accuracy} shows that the \mas achieves an accuracy of 0.89 when
 considering the \sds. Nonetheless, the \mas fails
@@ -118,7 +118,7 @@ the average \sscore of the complete dataset is
 
 
 \begin{figure}[t!]
-  \includegraphics[width=\columnwidth]{images/boxplotSimilarity_V2.pdf}
+  \includegraphics[width=\columnwidth]{boxplotSimilarity_V2.pdf}
   \caption{\sscore of the malware samples in the small and complete datasets. The boxplots in the figure do not show
   outliers.}
   \label{fig:ss}
@@ -252,12 +252,12 @@ the recall of the \mas increases to 0.72, which, although improved, remains rela
   }
 
 
-\fh{We further analyze the samples from the \gps and \rmb malware families in our dataset, given their relevance to the negative results presented in our paper. First, we examined the \sscore of the samples. Figure~\ref{fig:hist} shows a histogram of the \sscore for both families. Notably, most of the repackaged versions are quite similar to the original versions, with an average \sscore of 0.94, a median of 0.99, and a standard deviation (SD) of 0.16 for the \gps family. For the \rmb family, the average \sscore is 0.81, the median is 0.91, and the SD is 0.26. }
+We further analyze the samples from the \gps and \rmb malware families in our dataset, given their relevance to the negative results presented in our paper. First, we examined the \sscore of the samples. Figure~\ref{fig:hist} shows a histogram of the \sscore for both families. Notably, most of the repackaged versions are quite similar to the original versions, with an average \sscore of 0.94, a median of 0.99, and a standard deviation (SD) of 0.16 for the \gps family. For the \rmb family, the average \sscore is 0.81, the median is 0.91, and the SD is 0.26.
 
-\fh{
+
 We also reverse-engineered samples from both families. Due to the significant effort required for reverse engineering, we limited our analysis to a sample of 30 \gps and 30 \rmb malware samples, using the \texttt{SimiDroid}\footnote{https://github.com/lilicoding/SimiDroid},
 \texttt{apktool}~\footnote{https://ibotpeaches.github.io/Apktool/},
-and \texttt{smali2java}~\footnote{https://github.com/AlexeySoshin/smali2java} tools. Considering this sample, the median \sscore are 0.99 and 0.90 for the \gps and \rmb families, respectively. Table~\ref{tab:simidroid-outputs} and Table~\ref{tab:simidroid-outputs-2} summarize the outputs of \texttt{SimiDroid} for these samples. }
+and \texttt{smali2java}~\footnote{https://github.com/AlexeySoshin/smali2java} tools. Considering this sample, the median \sscore are 0.99 and 0.90 for the \gps and \rmb families, respectively. Table~\ref{tab:simidroid-outputs} and Table~\ref{tab:simidroid-outputs-2} summarize the outputs of \texttt{SimiDroid} for these samples.
 
 
 Regarding the \gps malware, the similarity assessment of this sample of 30 apps reveals a few modification patterns when comparing the original and the repackaged versions. First, no instance in this \gps sample dataset modifies the Android Manifest file to require additional permissions, for instance. In most of the cases, the repackaged version just changes the Manifest file to modify either the package name or the main activity name. Moreover, 29 out of the 30 samples in this dataset  {\bf modifies} the 
@@ -266,15 +266,15 @@ asset. Figure~\ref{code:onReceive} shows the code pattern of the \texttt{onRecei
 
 %\begin{wrapfigure}{l}{0.4\textwidth}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{tabular}{@{}c@{}}
-    \includegraphics[scale=0.3]{images/similarityGappusin_V2.pdf} \\[\abovecaptionskip]
+    \includegraphics[scale=0.3]{similarityGappusin_V2.pdf} \\[\abovecaptionskip]
     \small (a) \sscore for the samples in the \gps family.
   \end{tabular}
 
   \begin{tabular}{@{}c@{}}
-    \includegraphics[scale=0.3]{images/similarityRevmov_V1.pdf} \\[\abovecaptionskip]
+    \includegraphics[scale=0.3]{similarityRevmov_V1.pdf} \\[\abovecaptionskip]
     \small (b) \sscore for the samples in the \rmb family.
   \end{tabular}
 
@@ -283,7 +283,7 @@ asset. Figure~\ref{code:onReceive} shows the code pattern of the \texttt{onRecei
 
 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \lstset{texcl=true,basicstyle=\fontsize{6}{8}\selectfont\sf,commentstyle=\small\rm,mathescape=true,escapeinside={(*}{*)}}
 \begin{lstlisting}[language=Java]
@@ -323,14 +323,14 @@ that decision simplifies the procedure of downloading a \texttt{data.apk} asset 
 from the asset available in the original version of the apps. Removing those methods might
 also be an strategy for antivirus evasion. For instance, although
 some usages of the class \texttt{DexClassLoader} might be legitimate, it allows specific
-types of atack based on dynamic code injection~\cite{falsina:acsac}. As such, 
+types of atack based on dynamic code injection~\cite{DBLP:conf/acsac/FalsinaFZKVM15}. As such, 
 antivirus might flag specific patterns using the Android reflection API suspect. 
 Unfortunately, the \mas also fails to identify
 a malicious behavior with this type of change (i.e., changes that remove methods).
 Listing~\ref{code:deletedMethod} shows an example of code pattern frequently removed
 from the repackaged versions from the \gps family. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \lstset{texcl=true,basicstyle=\fontsize{6}{8}\selectfont\sf,commentstyle=\small\rm,mathescape=true,escapeinside={(*}{*)}}
 \begin{lstlisting}[language=Java]
@@ -453,16 +453,15 @@ downloader for further malicious app~\cite{DBLP:conf/ndss/ArpSHGR14}---which red
 however the repackaged version have additional call sites to the advertisement API and the advertisements sources are different. This behavior is not so harmful when compared to others repackaged apps, however nothing prevents that others malware families insert malicious operations, such as theft of sensitive data.
 
 
-\fh{As the same way from \gps samples, we also reengineer 30 samples from the \rmb family, choosed randomly, and which were not detected by the \mas. As with the \gps family samples, no instance from the \rmb family modified the Manifest file or inserted extra calls to sensitive APIs, making it harder for the \mas to correctly label the samples as malware. However, our reverse engineering reveals that all apps store a file with the extension ``.so'' (Shared Object files) in their lib directory. These files are dynamic libraries containing native code written in C or C++, and are often used by apps for performance reasons, when resource-intensive tasks need to be performed~\cite{ruggia2023dark}. }
+As the same way from \gps samples, we also reengineer 30 samples from the \rmb family, choosed randomly, and which were not detected by the \mas. As with the \gps family samples, no instance from the \rmb family modified the Manifest file or inserted extra calls to sensitive APIs, making it harder for the \mas to correctly label the samples as malware. However, our reverse engineering reveals that all apps store a file with the extension ``.so'' (Shared Object files) in their lib directory. These files are dynamic libraries containing native code written in C or C++, and are often used by apps for performance reasons, when resource-intensive tasks need to be performed~\cite{ruggia2023dark}.
 
-\fh{Unfortunately, it is also possible to create malicious repackaged apps using ``.so'' files, as they can be replaced by a version containing harmful code~\cite{DBLP:conf/dsn/QianLSC14}. The Shared Object files also allow for attacks based on dynamic code injection~\cite{falsina:acsac}, considering that Android apps can use methods like System.loadLibrary() or System.load() to download malicious ``.so''  files from a remote server. Once on the device, malicious apps can use these files to interface with Java code in Android apps, via Java Native Code (JNI), performing malicious operations on low-level code, bypassing security mechanisms, like the \mas.}
+Unfortunately, it is also possible to create malicious repackaged apps using ``.so'' files, as they can be replaced by a version containing harmful code~\cite{DBLP:conf/dsn/QianLSC14}. The Shared Object files also allow for attacks based on dynamic code injection~\cite{DBLP:conf/acsac/FalsinaFZKVM15}, considering that Android apps can use methods like \texttt{System.loadLibrary()} or \texttt{System.load()} to download malicious ``.so''  files from a remote server. Once on the device, malicious apps can use these files to interface with Java code in Android apps, via Java Native Code (JNI), performing malicious operations on low-level code, bypassing security mechanisms, like the \mas.
 
-\fh{
+
 Our assessment confirms that all of the samples contain Java code that loads a native library. To load these libraries, they use the \texttt{loadLibrary} method of the \texttt{System} class, which is called in the static constructor of the \texttt{mainActivity} class. The \texttt{loadLibrary} method takes ``game'' as an argument, and the code automatically searches the default lib directory for the .so file named (\texttt{lib}+\texttt{argument}). In all samples, the ``lib'' directory contains the \texttt{libgame.so} file. Figure~\ref{code:jni} present the code pattern of the \texttt{mainActivity} class found in the samples from \rmb family.
-}
 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \lstset{texcl=true,basicstyle=\fontsize{6}{8}\selectfont\sf,commentstyle=\small\rm,mathescape=true,escapeinside={(*}{*)}}
 \begin{lstlisting}[language=Java]
@@ -476,9 +475,8 @@ public class PZPlayer extends Cocos2dxActivity {
 \label{code:jni}
 \end{figure}
 
-\fh{
+
 The \texttt{libgame.so} file contains compiled code written in C or C++, which is loaded into memory and linked to the apps at runtime. Although machine code is very difficult to analyze, we found that all the files include the \texttt{JNI\underline{\hspace{.1in}}OnLoad} function, which JNI automatically uses to link Java methods and native functions. When we analyzed the hexadecimal ``.so'' file, we found that all of them differ in size and content between the original and repackaged apps. It is possible that changes of interest occurred in the native \texttt{libgame.so} file and have gone unnoticed by the \mas.
-}
 
 
 %%\alert{We argue in favor of new research efforts to integrate the \mas 
