@@ -21,15 +21,10 @@ First, they use a small dataset of malware comprising only \appsSmall pairs of o
 the impact of relevant features of the repackaged apps on the accuracy of the \mas for malware classification, including
 (a) whether or not the repackaged version is a malware, (b) the similarity between the original and the repackaged versions of an app,
 and (c) the malware family (e.g., \fm{gappusin}, \fm{kuguo}, \fm{dowgin}, etc.) when the repackaged
-version of an app is a malware. This limitations compromise a full understanding of the \mas performance. We present more details about the \mas and related work in Section~\ref{sec:background}.
+version of an app is a malware. These limitations compromise a full understanding of the \mas performance. We present more details about the \mas and related work in Section~\ref{sec:background}.
 
+\fh{To better understand the impact of these issues on previously published results, this paper proposes an evaluation of the accuracy of \mas by replicating the study conducted by Bao et al.~\cite{DBLP:conf/wcre/BaoLL18}. The goal of this replication is to verify the original study's findings and reassess the \mas using DroidBot [29]. DroidBot is a test case generation tool that, according to Bao et al., provides the most accurate results for Android sandboxes in terms of malware detection. At a second moment, we repeat the replication, but this time using a curated dataset of app pairs (original/repackaged versions), which is significantly larger than the dataset used in Bao et al.'s study. Our new dataset contains \apps pairs of original and repackaged apps. The datasets and the procedures for data collection and analysis are detailed in Section~\ref{sec:experimentalSetup}.}
 
-To understand the impact of these issues on results already published in the literature, in this paper we reconsider the accuracy of the \mas based on
-DroidBot~\cite{DBLP:conf/icse/LiYGC17}---as we mentioned, the test case generation tool that, according to the literature, leads to the most accurate Android sandbox, regarding malware identification. 
-Compared to previous studies~\cite{DBLP:conf/wcre/BaoLL18,DBLP:conf/scam/CostaMCMVBC20},
-we use a curated dataset of app pairs (original/repackaged versions) that is, in terms of magnitude, larger than the previously used
-dataset (it contains \apps pairs of original/repackaged apps). We detail our datasets and the procedures we follow for data collection and data analysis in Section~\ref{sec:experimentalSetup}.
- 
 {\bf Negative results.} Our study reveals a significantly lower
 accuracy (\fone of \fscore) of the \mas in comparison to what has been reported before (\fone of \fscoreSmall). 
 Since an accuracy of \fscore is clearly unsatisfactory for a trustworthy malware classification technique, we conduct a set of experiments 

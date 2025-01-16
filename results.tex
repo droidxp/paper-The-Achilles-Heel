@@ -1,9 +1,8 @@
 \section{Results}\label{sec:results}
 
 
-In this section, we detail the findings of our study.  We remind the reader that our main goal with this study is to
-better understand the strengths and limitations of the \mas for malware detection using the state-of-the-art
-test case generation tool (DroidBot). We explore
+\fh{In this section, we detail the findings of our study.  We remind the reader that our main goal with this study is to
+better understand the strengths and limitations of the \mas for malware detection by replicating the work of Bao et al., using DroidBot as the test case generation tool.} We explore
 the results of our research using two datasets: the \sds (\appsSmall app pairs), and \cds (\apps pairs).
 
 
@@ -24,7 +23,7 @@ implementation of the \mas.
   \sds close to what has been reported in
   previous studies.}
 
-In the previous studies~\cite{DBLP:conf/wcre/BaoLL18,DBLP:journals/jss/CostaMMSSBNR22},
+In the preview study~\cite{DBLP:conf/wcre/BaoLL18},
 the authors assume that all repackaged versions contain a
 malicious behavior. For this reason, the authors do not
 explore accuracy metrics (such as Precision, Recall, and
@@ -110,13 +109,6 @@ original and repackaged versions of an app are.
 The SmallDS exhibits an average \sscore of 0.89 (with a median of 0.99 and standard deviation of 0.25),
 whereas the complete dataset averages a \sscore of 0.90 (with a median of 0.98 and standard deviation of 0.18). 
 
-The average \sscore of the
-\sds is 0.89 (median of 0.99 and sd of 0.25); while
-the average \sscore of the complete dataset is
-\review{0.90} (median of \review{0.98} and sd of \review{0.18}).
-
-
-
 \begin{figure}[t!]
   \includegraphics[width=\columnwidth]{boxplotSimilarity_V2.pdf}
   \caption{\sscore of the malware samples in the small and complete datasets. The boxplots in the figure do not show
@@ -153,7 +145,7 @@ of an app.
   of the \mas for malware classification.}
 
 
-To clarify the lack of association between
+To clarify the association between
 \sscore and correctness, we use the \emph{K-Means} algorithm to split the
 \cds into ten clusters---according to the \sscore. We then
 estimate the percentage of correct classifications for each cluster, as
@@ -321,9 +313,9 @@ class \texttt{com.game.a}. This class extensively use
 the Android reflection API. Although it is not clear the real purpose of removing these methods,
 that decision simplifies the procedure of downloading a \texttt{data.apk} asset that is different
 from the asset available in the original version of the apps. Removing those methods might
-also be an strategy for antivirus evasion. For instance, although
+also be a strategy for antivirus evasion. For instance, although
 some usages of the class \texttt{DexClassLoader} might be legitimate, it allows specific
-types of atack based on dynamic code injection~\cite{DBLP:conf/acsac/FalsinaFZKVM15}. As such, 
+types of attack based on dynamic code injection~\cite{DBLP:conf/acsac/FalsinaFZKVM15}. As such, 
 antivirus might flag specific patterns using the Android reflection API suspect. 
 Unfortunately, the \mas also fails to identify
 a malicious behavior with this type of change (i.e., changes that remove methods).
@@ -450,10 +442,10 @@ BB3EDE & \rmb &	0.7105	&2393	&256	&1217	&719\\
 
 In summary, our reverse engineering effort brings evidence that malware samples from the \gps family neither modify the Android Manifest files nor call additional sensitive APIs. It acts as a
 downloader for further malicious app~\cite{DBLP:conf/ndss/ArpSHGR14}---which reduce the ability of the \mas to correctly classify a sample as a malware. Both versions (original/repackaged) from the \gps family have the same behavior for showing advertisements to the user,
-however the repackaged version have additional call sites to the advertisement API and the advertisements sources are different. This behavior is not so harmful when compared to others repackaged apps, however nothing prevents that others malware families insert malicious operations, such as theft of sensitive data.
+however the repackaged version has additional call sites to the advertisement API and the advertisements sources are different. This behavior is not so harmful when compared to others repackaged apps, however nothing prevents that other malware families insert malicious operations, such as theft of sensitive data.
 
 
-As the same way from \gps samples, we also reengineer 30 samples from the \rmb family, choosed randomly, and which were not detected by the \mas. As with the \gps family samples, no instance from the \rmb family modified the Manifest file or inserted extra calls to sensitive APIs, making it harder for the \mas to correctly label the samples as malware. However, our reverse engineering reveals that all apps store a file with the extension ``.so'' (Shared Object files) in their lib directory. These files are dynamic libraries containing native code written in C or C++, and are often used by apps for performance reasons, when resource-intensive tasks need to be performed~\cite{ruggia2023dark}.
+As the same way from \gps samples, we also reverse-engineered 30 samples from the \rmb family, choosed randomly, and which were not detected by the \mas. As with the \gps family samples, no instance from the \rmb family modified the Manifest file or inserted extra calls to sensitive APIs, making it harder for the \mas to correctly label the samples as malware. However, our reverse engineering reveals that all apps store a file with the extension ``.so'' (Shared Object files) in their lib directory. These files are dynamic libraries containing native code written in C or C++, and are often used by apps for performance reasons, when resource-intensive tasks need to be performed~\cite{ruggia2023dark}.
 
 Unfortunately, it is also possible to create malicious repackaged apps using ``.so'' files, as they can be replaced by a version containing harmful code~\cite{DBLP:conf/dsn/QianLSC14}. The Shared Object files also allow for attacks based on dynamic code injection~\cite{DBLP:conf/acsac/FalsinaFZKVM15}, considering that Android apps can use methods like \texttt{System.loadLibrary()} or \texttt{System.load()} to download malicious ``.so''  files from a remote server. Once on the device, malicious apps can use these files to interface with Java code in Android apps, via Java Native Code (JNI), performing malicious operations on low-level code, bypassing security mechanisms, like the \mas.
 
@@ -476,7 +468,7 @@ public class PZPlayer extends Cocos2dxActivity {
 \end{figure}
 
 
-The \texttt{libgame.so} file contains compiled code written in C or C++, which is loaded into memory and linked to the apps at runtime. Although machine code is very difficult to analyze, we found that all the files include the \texttt{JNI\underline{\hspace{.1in}}OnLoad} function, which JNI automatically uses to link Java methods and native functions. When we analyzed the hexadecimal ``.so'' file, we found that all of them differ in size and content between the original and repackaged apps. It is possible that changes of interest occurred in the native \texttt{libgame.so} file and have gone unnoticed by the \mas.
+The \texttt{libgame.so} file contains compiled code written in C or C++, which is loaded into memory and linked to the apps at runtime. Although machine code is very difficult to analyze, we found that all the files include the \texttt{JNI\underline{\hspace{.1in}}OnLoad} function, which JNI automatically uses to link Java methods and native functions. When we analyzed the ``.so'' file, we found that all of them differ in size and content between the original and repackaged apps. It is possible that changes of interest occurred in the native \texttt{libgame.so} file and have gone unnoticed by the \mas.
 
 
 %%\alert{We argue in favor of new research efforts to integrate the \mas 

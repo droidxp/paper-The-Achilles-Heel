@@ -1,0 +1,283 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+\RequirePackage{fix-cm}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+
+\usepackage{graphicx}
+
+
+      
+\usepackage[T1]{fontenc}
+\usepackage{newtxmath,newtxtext}                
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{tabulary}                                                           
+% Include the following packages 
+
+\usepackage{booktabs}
+
+
+\usepackage{amsmath,amsfonts}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{balance}
+\usepackage[most]{tcolorbox}
+\usepackage{awesomebox}
+\usepackage{multirow}
+\usepackage{blindtext}
+
+\raggedbottom
+%%\unnumbered% uncomment this for unnumbered level heads
+
+\newtcbtheorem{obs}{Finding}{%
+        theorem name,%
+        colback=gray!5,%
+        colframe=gray!35!black,%
+        fonttitle=\bfseries,title after break={Lemma  -- \raggedleft Continued}%
+    }{lem}
+
+\newcommand{\tb}[2]{\tipbox{{\bf Finding #1}. #2}}
+
+\newcommand{\droidxp}{DroidXP\xspace}
+\newcommand{\review}[1]{\textcolor{black}{#1}}
+\newcommand{\alert}[1]{\textcolor{red}{#1}}
+\newcommand\kn[1]{\textcolor{red}{KN: #1}}
+\newcommand\fh[1]{\textcolor{blue}{FH: #1}}
+\newcommand\rb[1]{(\textcolor{red}{RB: #1})}
+
+\newcommand{\highlight}[1]{{\color{red}}#1}
+
+\newcommand\raw[1]{\textcolor{red}{#1}\xspace}
+
+\newcommand{\mas}{MAS approach\xspace}
+
+\newcommand{\fm}[1]{\emph{#1}\xspace}
+
+\newcommand{\gps}{\fm{gappusin}}  % the gappusin family.
+
+\newcommand{\rmb}{\fm{revmob}} 
+
+\newcommand{\sscore}{Similarity Score\xspace}
+
+\newcommand{\rqa}{What is the impact of considering a larger and diverse dataset on the accuracy of the \mas for malware classification?}
+
+\newcommand{\rqb}{How much gain we obtain on the performance of the \mas for malware classification when considering trace analysis?}
+
+\newcommand{\rqc}{What is the influence of the similarity between the original and repackaged
+                  versions of the apps on the performance of the \mas for malware classification?}
+
+\newcommand{\rqd}{What is the influence of the malware family (e.g., \fm{gappusin}, \fm{kuguo}, \fm{dowgin}) on the performance of the \mas for malware classification?}
+
+\newcommand{\rqe}{How much gain we obtain on the performance of the \mas for malware classification when considering its extensions?}
+
+
+\newcommand{\repack}{RePack\xspace}
+\newcommand{\amc}{AndroMalPack\xspace}
+
+\newcommand{\appsSmall}{102\xspace}
+\newcommand{\apps}{\textcolor{black}{4,076}\xspace}
+\newcommand{\napps}{\textcolor{blue}{726}\xspace}
+
+\newcommand{\sds}{\texttt{SmallDS}\xspace}
+\newcommand{\cds}{\texttt{LargeDS}\xspace}
+\newcommand{\nds}{\texttt{DS3}\xspace}
+\newcommand{\avt}{\texttt{avclass2} tool\xspace}
+\newcommand{\vt}{\texttt{VirusTotal}\xspace}
+\newcommand{\se}{security engine\xspace}
+\newcommand{\ses}{security engines\xspace}
+
+
+\newcommand{\fone}{F1-score\xspace}
+\newcommand{\fscoreSmall}{0.89\xspace}
+\newcommand{\fscoreNew}{0.85\xspace}
+
+\newcommand{\nfscoreSmall}{0.85\xspace}
+\newcommand{\nfscoreSmallC}{0.87\xspace}
+
+\newcommand{\fscore}{\textcolor{black}{0.54}\xspace}
+\newcommand{\fscoreC}{\textcolor{blue}{0.49}\xspace}
+
+\newcommand{\malwares}{\textcolor{black}{2,895}\xspace}
+\newcommand{\malwaresP}{\textcolor{black}{71.02}}
+\newcommand{\malwaresN}{\textcolor{blue}{87.98}}
+\newcommand{\appsGps}{\textcolor{black}{1,337}\xspace}
+\newcommand{\appsGpsFN}{\textcolor{black}{1,170}\xspace}
+
+\newcommand{\blls}{BLL-Study\xspace}
+
+%
+
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+%
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+%
+\begin{document}
+
+\title{Mining Android Sandox for Malware Detection : A Replication and Extension Study}
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Francisco Costa\and
+        Ismael Medeiros \and
+        Leandro Oliveira \and
+        Jo\~{a}o Cal\'{a}ssio\and
+        Rodrigo Bonif\'{a}cio \and
+        Krishna Narasimhan \and
+        Mira Mezini \and
+        M\'{a}rcio Ribeiro
+}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{
+            Francisco, Costa \at 
+            University of Brasília, Brasília, Brazil\\
+            \email{francisco.costa@aluno.unb.br}
+            \and
+            Ismael, Medeiros\at 
+            University of Brasília, Brasília, Brazil\\
+            \email{ismael.medeiros@aluno.unb.br}
+            \and
+            Leandro, Oliveira\at 
+            University of Brasília, Brasília, Brazil\\
+            \email{leandro.oliveira@aluno.unb.br}
+            \and
+            Jo\~{a}o, Cal\'{a}ssio\at 
+            University of Brasília, Brasília, Brazil\\
+            \email{joao.calassion@aluno.unb.br}
+            \and
+            Rodrigo, Bonif\'{a}cio\at 
+            University of Brasília, Brasília, Brazil\\
+            \email{rbonifacio@unb.br}
+            \and
+            Krishna, Narasimhan\at
+            TU Darmstadt, Germany\\
+            \email{kri.nara@informatik.tu-darmstadt.de}
+            \and
+            Mira, Mezini\at
+            TU Darmstadt, Germany\\
+            \email{mezini@informatik.tu-darmstadt.de}
+            \and
+            M\'{a}rcio, Ribeiro\at
+             Federal University of Alagoas, Brazil\\
+            \email{marcio@ic.ufal.br}
+}
+
+\date{
+\begin{huge} \\
+Declarations
+\end{huge} \\
+\begin{large} \\
+\textbf{Funding and Conflicts of interests/Competing interest}
+\end{large} \\
+The authors declare that they have no conflict of interest. \\
+\begin{large} \\
+\textbf{Data Availability Statements}
+\end{large} \\
+Our study is fully reproducible. All developed tools, collected data, and Python scripts are available online for statistical analysis in [https://github.com/droidxp/paper-droidxptrace-results]
+}
+
+\maketitle
+
+
+
+\vspace{2em}
+
+\input{abstract}
+\input{introduction}
+\input{background}
+\input{experimentalSetup}
+\input{results}
+\input{discussion}
+\input{conclusions}
+\balance 
+
+
+%\begin{acknowledgements}
+%If you'd like to thank anyone, place your comments here
+%and remove the percent signs.
+%\end{acknowledgements}
+
+
+% Authors must disclose all relationships or interests that 
+% could have direct or potential influence or impart bias on 
+% the work: 
+%
+% \section*{Conflict of interest}
+%
+% The authors declare that they have no conflict of interest.
+
+
+% BibTeX users please use one of
+%\bibliographystyle{spbasic}      % basic style, author-year citations
+\bibliographystyle{spmpsci}      % mathematics and physical sciences
+%\bibliographystyle{spphys}       % APS-like style for physics
+\bibliography{ref}   % name your BibTeX data base
+
+
+
+\end{document}
+% end of file template.tex
+
